@@ -1,0 +1,63 @@
+package com.teamblackout.app.News;
+
+import android.content.Context;
+import android.os.AsyncTask;
+import android.util.Log;
+
+import com.teamblackout.app.News.News;
+import com.teamblackout.app.XMLParser;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+
+import java.util.ArrayList;
+
+public class GetUpdatesList extends AsyncTask<ArrayList<News>, Void, ArrayList<News>> {
+    // All static variables
+    String mURL = null;
+    // XML node keys
+    static final String KEY_ITEM = "Update"; // parent node
+    static final String KEY_NAME = "Title";
+    static final String KEY_DATE = "Date";
+    static final String KEY_DESCRIPTION = "description";
+    ArrayList<News> menuItems = new ArrayList<News>();
+    Context mcontext;
+
+
+    public GetUpdatesList(String url, Context context) {
+        mURL = url;
+        mcontext = context;
+    }
+
+    @Override
+    protected void onPreExecute() {
+        //this
+    }
+
+    protected ArrayList<News> doInBackground(ArrayList<News>... passing) {
+        XMLParser parser = new XMLParser(mcontext);
+        String[] xml = parser.getXmlFromUrl(mURL); // getting XML
+        Document doc = parser.getDomElement(xml[0]); // getting DOM element
+        NodeList nl = doc.getElementsByTagName(KEY_ITEM);
+        for (int i = 0; i < nl.getLength(); i++) {
+            Element e = (Element) nl.item(i);
+            News datanews = new News(
+                    parser.getValue(e, KEY_NAME),
+                    parser.getValue(e, KEY_DATE),
+                    parser.getValue(e, KEY_DESCRIPTION)
+            );
+            menuItems.add(datanews);
+        }
+        if (Integer.parseInt(xml[1]) == 0) {
+            Log.d("Reponse", "no cache 4 u");
+        } else {
+            Log.d("Reponse", "CacheBro");
+        }
+
+        return menuItems;
+    }
+
+    protected void onPostExecute(Void unused) {
+    }
+}
