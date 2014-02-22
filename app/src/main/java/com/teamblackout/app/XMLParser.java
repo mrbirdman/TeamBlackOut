@@ -39,23 +39,18 @@ public class XMLParser {
     Context mcontext;
     HttpResponseCache cache;
 
-
     public XMLParser(Context context) {
         mcontext = context;
     }
 
-    public String[] getXmlFromUrl(String url) {
+    public String getXmlFromUrl(String url) {
         try
         {
             URL realUrl = new URL(url);
 
-            cache = new HttpResponseCache(mcontext.getCacheDir(), 10L * 1024 * 1024);
-
-            client.setResponseCache(cache);
             String result = get(realUrl);
 
-            String[] data = {result, cache.getHitCount() + ""};
-            return data;
+            return result;
 
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
@@ -64,8 +59,6 @@ public class XMLParser {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
 
         return null;
     }
@@ -93,10 +86,6 @@ public class XMLParser {
         } finally {
             if (in != null) in.close();
         }
-    }
-
-    private void processResults(int response) throws HttpException {
-
     }
 
     public Document getDomElement(String xml) {

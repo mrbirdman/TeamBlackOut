@@ -19,6 +19,7 @@
         android:padding="10dp"
         android:layout_alignBottom="@+id/headerView"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true" />
 
 </RelativeLayout>

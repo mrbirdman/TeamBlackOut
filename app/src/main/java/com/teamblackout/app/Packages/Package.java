@@ -8,7 +8,7 @@ package com.teamblackout.app.Packages;
     static final String KEY_PREVIEW = "Preview";
     static final String KEY_DESCRIPTION = "Desc"; */
 
-public class App {
+public class Package {
     public String title;
     public String icon;
     public String md5;
@@ -18,11 +18,11 @@ public class App {
     public String description;
     public String section;
 
-    public App(){
+    public Package(){
         super();
     }
 
-    public App(String title, String icon, String md5, String download, String date, String preview, String description, String section) {
+    public Package(String title, String icon, String md5, String download, String date, String preview, String description, String section) {
         super();
         this.title = title;
         this.icon = icon;

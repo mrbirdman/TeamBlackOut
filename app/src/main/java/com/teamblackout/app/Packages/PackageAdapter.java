@@ -6,7 +6,6 @@ import android.graphics.Bitmap;
 import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,17 +20,17 @@ import com.teamblackout.app.R;
 
 import java.util.ArrayList;
 
-public class ApkAdapter extends ArrayAdapter<App> {
+public class PackageAdapter extends ArrayAdapter<Package> {
 
     Context context;
     int layoutResourceId;
-    private ArrayList<App> data;
+    private ArrayList<Package> data;
     Picasso p;
 
     private static final int TYPE_ITEM_HEADER = 0;
     private static final int TYPE_ITEM = 1;
 
-    public ApkAdapter(Context context, int layoutResourceId, ArrayList<App> data) {
+    public PackageAdapter(Context context, int layoutResourceId, ArrayList<Package> data) {
         super(context, layoutResourceId, data);
         this.layoutResourceId = layoutResourceId;
         this.context = context;
@@ -70,12 +69,10 @@ public class ApkAdapter extends ArrayAdapter<App> {
 
             @Override
             public void onBitmapFailed(Drawable drawable) {
-                Log.d("IMAGE", "FAILED");
             }
 
             @Override
             public void onPrepareLoad(Drawable drawable) {
-                Log.d("PREPARE", "PREPARELOAD");
             }
         };
 
@@ -88,7 +85,11 @@ public class ApkAdapter extends ArrayAdapter<App> {
             case TYPE_ITEM:
                 holder.txtTitle.setText(data.get(position).title);
                 holder.txtTitle.setTypeface(null, Typeface.NORMAL);
-                p.with(context).load(data.get(position).icon).resize(300, 300).placeholder(android.R.drawable.ic_delete).into(target);
+                p.with(context)
+                        .load(data.get(position).icon)
+                        .placeholder(android.R.drawable.ic_delete)
+                        .error(android.R.drawable.ic_menu_gallery)
+                        .into(target);
                 holder.updated.setText(data.get(position).date);
                 params.setMargins(150, 0, 0 ,0);
                 holder.txtTitle.setLayoutParams(params);
@@ -117,7 +118,7 @@ public class ApkAdapter extends ArrayAdapter<App> {
 
     @Override
     public int getItemViewType(int position) {
-        App apk = data.get(position);
+        Package apk = data.get(position);
         if (apk.section.isEmpty()) {
             return TYPE_ITEM;
         } else {

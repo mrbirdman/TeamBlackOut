@@ -14,9 +14,8 @@ import org.w3c.dom.NodeList;
 import java.util.ArrayList;
 
 public class GetUpdatesList extends AsyncTask<ArrayList<News>, Void, ArrayList<News>> {
-    // All static variables
     String mURL = null;
-    // XML node keys
+    boolean misUpdate;
     static final String KEY_ITEM = "Update"; // parent node
     static final String KEY_NAME = "Title";
     static final String KEY_DATE = "Date";
@@ -24,21 +23,16 @@ public class GetUpdatesList extends AsyncTask<ArrayList<News>, Void, ArrayList<N
     ArrayList<News> menuItems = new ArrayList<News>();
     Context mcontext;
 
-
-    public GetUpdatesList(String url, Context context) {
+    public GetUpdatesList(String url, Context context, boolean isServiceCheck) {
         mURL = url;
         mcontext = context;
-    }
-
-    @Override
-    protected void onPreExecute() {
-        //this
+        misUpdate = isServiceCheck;
     }
 
     protected ArrayList<News> doInBackground(ArrayList<News>... passing) {
         XMLParser parser = new XMLParser(mcontext);
-        String[] xml = parser.getXmlFromUrl(mURL); // getting XML
-        Document doc = parser.getDomElement(xml[0]); // getting DOM element
+        String xml = parser.getXmlFromUrl(mURL); // getting XML
+        Document doc = parser.getDomElement(xml); // getting DOM element
         NodeList nl = doc.getElementsByTagName(KEY_ITEM);
         for (int i = 0; i < nl.getLength(); i++) {
             Element e = (Element) nl.item(i);
@@ -49,15 +43,7 @@ public class GetUpdatesList extends AsyncTask<ArrayList<News>, Void, ArrayList<N
             );
             menuItems.add(datanews);
         }
-        if (Integer.parseInt(xml[1]) == 0) {
-            Log.d("Reponse", "no cache 4 u");
-        } else {
-            Log.d("Reponse", "CacheBro");
-        }
 
         return menuItems;
-    }
-
-    protected void onPostExecute(Void unused) {
     }
 }

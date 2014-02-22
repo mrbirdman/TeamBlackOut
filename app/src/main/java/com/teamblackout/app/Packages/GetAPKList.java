@@ -11,7 +11,7 @@ import org.w3c.dom.NodeList;
 
 import java.util.ArrayList;
 
-public class GetAPKList extends AsyncTask<ArrayList<App>, Void, ArrayList<App>> {
+public class GetAPKList extends AsyncTask<ArrayList<Package>, Void, ArrayList<Package>> {
     // All static variables
     static final String BASEURL = "http://jbthemes.com/teamblackedoutapps/";
     static final String APPURL = "Updates-XML-PAID/";
@@ -26,7 +26,7 @@ public class GetAPKList extends AsyncTask<ArrayList<App>, Void, ArrayList<App>> 
     static final String KEY_PREVIEW = "Preview";
     static final String KEY_DESCRIPTION = "Desc";
     static final String KEY_SECTION = "Section";
-    ArrayList<App> menuItems = new ArrayList<App>();
+    ArrayList<Package> menuItems = new ArrayList<Package>();
     Context mcontext;
 
 
@@ -40,15 +40,15 @@ public class GetAPKList extends AsyncTask<ArrayList<App>, Void, ArrayList<App>> 
         //this
     }
 
-    protected ArrayList<App> doInBackground(ArrayList<App>... passing) {
+    protected ArrayList<Package> doInBackground(ArrayList<Package>... passing) {
         XMLParser parser = new XMLParser(mcontext);
         String builtUrl = BASEURL + APPURL + mURL;
-        String[] xml = parser.getXmlFromUrl(builtUrl); // getting XML
-        Document doc = parser.getDomElement(xml[0]); // getting DOM element
+        String xml = parser.getXmlFromUrl(builtUrl); // getting XML
+        Document doc = parser.getDomElement(xml); // getting DOM element
         NodeList nl = doc.getElementsByTagName(KEY_ITEM);
         for (int i = 0; i < nl.getLength(); i++) {
             Element e = (Element) nl.item(i);
-            App newAPK = new App(
+            Package newAPK = new Package(
                     parser.getValue(e, KEY_NAME),
                     parser.getValue(e, KEY_ICON),
                     parser.getValue(e, KEY_MD5),

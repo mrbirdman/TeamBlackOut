@@ -36,8 +36,8 @@ public class GetThemeList extends AsyncTask<ArrayList<ThemeList>, Void, ArrayLis
 
     protected ArrayList<ThemeList> doInBackground(ArrayList<ThemeList>... passing) {
         XMLParser parser = new XMLParser(mcontext);
-        String[] xml = parser.getXmlFromUrl(URL); // getting XML
-        Document doc = parser.getDomElement(xml[0]); // getting DOM element
+        String xml = parser.getXmlFromUrl(URL); // getting XML
+        Document doc = parser.getDomElement(xml); // getting DOM element
         NodeList nl = doc.getElementsByTagName(KEY_ITEM);
         for (int i = 0; i < nl.getLength(); i++) {
             Element e = (Element) nl.item(i);
