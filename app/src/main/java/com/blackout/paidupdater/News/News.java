@@ -1,4 +1,4 @@
-package com.teamblackout.app.News;
+package com.blackout.paidupdater.News;
 
 
     /* static final String KEY_NAME = "Name";

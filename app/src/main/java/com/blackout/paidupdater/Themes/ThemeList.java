@@ -1,4 +1,4 @@
-package com.teamblackout.app.Themes;
+package com.blackout.paidupdater.Themes;
 
 public class ThemeList {
     public String title;

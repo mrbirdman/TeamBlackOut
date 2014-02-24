@@ -1,4 +1,4 @@
-package com.teamblackout.app.Packages;
+package com.blackout.paidupdater.Packages;
 
     /* static final String KEY_NAME = "Name";
     static final String KEY_ICON = "ThumbnailUrl";

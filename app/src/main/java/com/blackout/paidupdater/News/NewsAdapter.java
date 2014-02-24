@@ -1,4 +1,4 @@
-package com.teamblackout.app.Themes;
+package com.blackout.paidupdater.News;
 
 import android.app.Activity;
 import android.content.Context;
@@ -6,20 +6,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.teamblackout.app.R;
+import com.blackout.paidupdater.R;
 
 import java.util.ArrayList;
 
-public class ThemeAdapter extends ArrayAdapter<ThemeList> {
+public class NewsAdapter extends ArrayAdapter<News> {
 
     Context context;
     int layoutResourceId;
-    private ArrayList<ThemeList> data;
+    private ArrayList<News> data;
 
-    public ThemeAdapter(Context context, int layoutResourceId, ArrayList<ThemeList> data) {
+    public NewsAdapter(Context context, int layoutResourceId, ArrayList<News> data) {
         super(context, layoutResourceId, data);
         this.layoutResourceId = layoutResourceId;
         this.context = context;
@@ -34,10 +33,11 @@ public class ThemeAdapter extends ArrayAdapter<ThemeList> {
         if(row == null)
         {
             LayoutInflater inflater = ((Activity)context).getLayoutInflater();
-            row = inflater.inflate(R.layout.list_header_row, parent, false);
+            row = inflater.inflate(R.layout.list_header_date, parent, false);
 
             holder = new AppHolder();
             holder.txtTitle = (TextView) row.findViewById(R.id.headerView);
+            holder.txtDate = (TextView) row.findViewById(R.id.dateView);
 
             row.setTag(holder);
         }
@@ -47,6 +47,7 @@ public class ThemeAdapter extends ArrayAdapter<ThemeList> {
         }
 
         holder.txtTitle.setText(data.get(position).title);
+        holder.txtDate.setText(data.get(position).date);
 
         return row;
     }
@@ -54,6 +55,7 @@ public class ThemeAdapter extends ArrayAdapter<ThemeList> {
     static class AppHolder
     {
         TextView txtTitle;
-        ImageView imgIcon;
+        TextView txtDate;
+
     }
 }

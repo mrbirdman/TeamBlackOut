@@ -1,4 +1,4 @@
-package com.teamblackout.app.Packages;
+package com.blackout.paidupdater.Packages;
 
 import android.app.AlertDialog;
 import android.app.DownloadManager;
@@ -30,7 +30,7 @@ import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
-import com.teamblackout.app.R;
+import com.blackout.paidupdater.R;
 
 import java.io.File;
 import java.io.IOException;

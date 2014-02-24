@@ -1,4 +1,4 @@
-package com.teamblackout.app.News;
+package com.blackout.paidupdater.Packages;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
@@ -9,17 +9,17 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.teamblackout.app.R;
+import com.blackout.paidupdater.R;
 
 import java.util.concurrent.ExecutionException;
 
 /**
  * Get a list of packages, this is the "in theme view"
  */
-public class PressFragment extends Fragment {
+public class PackageListFragment extends Fragment {
 
 
-    private NewsAdapter adapter;
+    private PackageAdapter adapter;
     private ListView lv;
 
     /**
@@ -34,32 +34,33 @@ public class PressFragment extends Fragment {
      * Returns a new instance of this fragment for the given section
      * number.
      */
-    public static PressFragment newInstance(int sectionNumber) {
-        PressFragment fragment = new PressFragment();
+    public static PackageListFragment newInstance(String sectionNumber, String url) {
+        PackageListFragment fragment = new PackageListFragment();
         Bundle args = new Bundle();
-        args.putInt(ARG_TITLE, sectionNumber);
+        args.putString(ARG_TITLE, sectionNumber);
+        args.putString(ARG_URL, url);
         fragment.setArguments(args);
         return fragment;
     }
 
-    public PressFragment() {
+    public PackageListFragment() {
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_news, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_list, container, false);
 
-        getActivity().getActionBar().setTitle("Press Releases");
+        getActivity().getActionBar().setTitle(getArguments().getString(ARG_TITLE));
         getActivity().getActionBar().setIcon(R.drawable.ic_launcher);
 
         try {
-            GetUpdatesList task = new GetUpdatesList("http://jbthemes.com/teamblackedoutapps/update_description.xml", getActivity(), false);
+            GetAPKList task = new GetAPKList(getArguments().getString(ARG_URL), getActivity());
 
             lv = (ListView) rootView.findViewById(R.id.listView);
 
-            adapter = new NewsAdapter(getActivity(),
-                    R.layout.list_header_row , task.execute().get());
+            adapter = new PackageAdapter(getActivity(),
+                    R.layout.list_icon_row, task.execute().get());
 
             lv.setAdapter(adapter);
 
@@ -67,11 +68,11 @@ public class PressFragment extends Fragment {
                 public void onItemClick(AdapterView<?> parent, View view,int position, long id)
                 {
 
-                    News data = adapter.getItem(position);
+                    Package data = adapter.getItem(position);
 
                     FragmentManager fragmentManager = getFragmentManager();
                     fragmentManager.beginTransaction()
-                            .replace(R.id.container, NewsDetails.newInstance(data.title, data.date, data.description))
+                            .replace(R.id.container, PackageDetailsFragment.newInstance(data.title, data.icon, data.md5, data.download, data.preview, data.description))
                             .addToBackStack(null)
                             .commit();
                 }});
@@ -85,4 +86,3 @@ public class PressFragment extends Fragment {
         return rootView;
     }
 }
-

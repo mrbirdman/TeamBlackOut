@@ -1,4 +1,4 @@
-package com.teamblackout.app.News;
+package com.blackout.paidupdater.Themes;
 
 import android.app.Activity;
 import android.content.Context;
@@ -6,19 +6,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.teamblackout.app.R;
+import com.blackout.paidupdater.R;
 
 import java.util.ArrayList;
 
-public class NewsAdapter extends ArrayAdapter<News> {
+public class ThemeAdapter extends ArrayAdapter<ThemeList> {
 
     Context context;
     int layoutResourceId;
-    private ArrayList<News> data;
+    private ArrayList<ThemeList> data;
 
-    public NewsAdapter(Context context, int layoutResourceId, ArrayList<News> data) {
+    public ThemeAdapter(Context context, int layoutResourceId, ArrayList<ThemeList> data) {
         super(context, layoutResourceId, data);
         this.layoutResourceId = layoutResourceId;
         this.context = context;
@@ -33,11 +34,10 @@ public class NewsAdapter extends ArrayAdapter<News> {
         if(row == null)
         {
             LayoutInflater inflater = ((Activity)context).getLayoutInflater();
-            row = inflater.inflate(R.layout.list_header_date, parent, false);
+            row = inflater.inflate(R.layout.list_header_row, parent, false);
 
             holder = new AppHolder();
             holder.txtTitle = (TextView) row.findViewById(R.id.headerView);
-            holder.txtDate = (TextView) row.findViewById(R.id.dateView);
 
             row.setTag(holder);
         }
@@ -47,7 +47,6 @@ public class NewsAdapter extends ArrayAdapter<News> {
         }
 
         holder.txtTitle.setText(data.get(position).title);
-        holder.txtDate.setText(data.get(position).date);
 
         return row;
     }
@@ -55,7 +54,6 @@ public class NewsAdapter extends ArrayAdapter<News> {
     static class AppHolder
     {
         TextView txtTitle;
-        TextView txtDate;
-
+        ImageView imgIcon;
     }
 }

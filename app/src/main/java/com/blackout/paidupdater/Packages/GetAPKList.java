@@ -1,9 +1,10 @@
-package com.teamblackout.app.Packages;
+package com.blackout.paidupdater.Packages;
 
 import android.content.Context;
 import android.os.AsyncTask;
 
-import com.teamblackout.app.XMLParser;
+
+import com.blackout.paidupdater.XMLParser;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;

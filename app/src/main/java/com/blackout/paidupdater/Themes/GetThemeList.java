@@ -1,11 +1,11 @@
-package com.teamblackout.app.Themes;
+package com.blackout.paidupdater.Themes;
 
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 
-import com.teamblackout.app.Themes.ThemeList;
-import com.teamblackout.app.XMLParser;
+
+import com.blackout.paidupdater.XMLParser;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;

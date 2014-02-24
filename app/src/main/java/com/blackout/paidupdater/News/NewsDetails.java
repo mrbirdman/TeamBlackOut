@@ -1,4 +1,4 @@
-package com.teamblackout.app.News;
+package com.blackout.paidupdater.News;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.teamblackout.app.R;
+import com.blackout.paidupdater.R;
 
 /**
  * This is where we get the package details, apk or zip (it's just not named the right thing)

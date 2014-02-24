@@ -1,4 +1,4 @@
-package com.teamblackout.app;
+package com.blackout.paidupdater;
 
 import android.app.Activity;
 
@@ -11,9 +11,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.support.v4.widget.DrawerLayout;
 
-import com.teamblackout.app.News.GetUpdatesList;
-import com.teamblackout.app.News.PressFragment;
-import com.teamblackout.app.Themes.ThemeFragment;
+import com.blackout.paidupdater.News.PressFragment;
+import com.blackout.paidupdater.Themes.ThemeFragment;
 
 import java.io.File;
 import java.io.IOException;

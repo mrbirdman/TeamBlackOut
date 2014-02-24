@@ -1,4 +1,4 @@
-package com.teamblackout.app.Packages;
+package com.blackout.paidupdater.Packages;
 
 import android.app.Activity;
 import android.content.Context;
@@ -16,7 +16,7 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
-import com.teamblackout.app.R;
+import com.blackout.paidupdater.R;
 
 import java.util.ArrayList;
 

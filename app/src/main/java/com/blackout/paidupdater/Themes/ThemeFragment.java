@@ -1,20 +1,18 @@
-package com.teamblackout.app.Themes;
+package com.blackout.paidupdater.Themes;
 
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.teamblackout.app.MainActivity;
-import com.teamblackout.app.Packages.PackageListFragment;
-import com.teamblackout.app.R;
+import com.blackout.paidupdater.MainActivity;
+import com.blackout.paidupdater.Packages.PackageListFragment;
+import com.blackout.paidupdater.R;
 
 import java.util.concurrent.ExecutionException;
 

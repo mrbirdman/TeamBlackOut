@@ -1,11 +1,11 @@
-package com.teamblackout.app.News;
+package com.blackout.paidupdater.News;
 
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import com.teamblackout.app.News.News;
-import com.teamblackout.app.XMLParser;
+
+import com.blackout.paidupdater.XMLParser;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;

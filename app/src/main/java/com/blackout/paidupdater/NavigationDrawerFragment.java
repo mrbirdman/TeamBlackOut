@@ -1,4 +1,4 @@
-package com.teamblackout.app;
+package com.blackout.paidupdater;
 
 import android.app.Activity;
 import android.app.ActionBar;
