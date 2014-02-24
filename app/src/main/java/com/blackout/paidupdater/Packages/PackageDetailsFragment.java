@@ -97,10 +97,10 @@ public class PackageDetailsFragment extends Fragment {
         Target target = new Target() {
             @Override
             public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
-                Log.d("IMAGE", "GOT ICON");
                 getActivity().getActionBar().setIcon(new BitmapDrawable(bitmap));
-                p.with(getActivity()).load(preview).into(previewView);
-
+                if (!preview.isEmpty()) {
+                    p.with(getActivity()).load(preview).into(previewView);
+                }
             }
 
             @Override
@@ -115,8 +115,6 @@ public class PackageDetailsFragment extends Fragment {
 
             }
         };
-
-        Log.d("IMAGE", icon);
         p.with(getActivity()).load(icon).resize(250, 250).into(target);
 
         TextView descView = (TextView) rootView.findViewById(R.id.descriptionView);
