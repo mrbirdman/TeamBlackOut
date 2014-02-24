@@ -67,14 +67,14 @@ public class PackageListFragment extends Fragment {
             lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 public void onItemClick(AdapterView<?> parent, View view,int position, long id)
                 {
-
                     Package data = adapter.getItem(position);
-
-                    FragmentManager fragmentManager = getFragmentManager();
-                    fragmentManager.beginTransaction()
-                            .replace(R.id.container, PackageDetailsFragment.newInstance(data.title, data.icon, data.md5, data.download, data.preview, data.description))
-                            .addToBackStack(null)
-                            .commit();
+                    if (!data.icon.isEmpty())  {
+                        FragmentManager fragmentManager = getFragmentManager();
+                        fragmentManager.beginTransaction()
+                                .replace(R.id.container, PackageDetailsFragment.newInstance(data.title, data.icon, data.md5, data.download, data.preview, data.description))
+                                .addToBackStack(null)
+                                .commit();
+                    }
                 }});
 
         } catch (InterruptedException e) {
